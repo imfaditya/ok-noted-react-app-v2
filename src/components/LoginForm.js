@@ -25,12 +25,12 @@ function LoginForm() {
   }
 
   return (
-    <form className='login-form' onSubmit={onSubmit}>
-      <h2 className='login-form__title'>Please Log In First</h2>
-      <input className='input-form' type='email' placeholder='Email' value={email} onChange={setEmail}/>
-      <input className='input-form' type='password' placeholder='Password' value={password} onChange={setPassword}/>
-      <button className='button-submit' type='submit'>Log In</button>
-      <Link className='login-form__register' to='/register'>Register?</Link>
+    <form className='form' onSubmit={onSubmit}>
+      <h2 className='form__title'>Please Log In First</h2>
+      <input className='form__input' type='email' placeholder='Email' value={email} onChange={setEmail}/>
+      <input className='form__input' type='password' placeholder='Password' value={password} onChange={setPassword}/>
+      <button className='form__button' type='submit'>Log In</button>
+      <Link className='form__navigate' to='/register'>Register</Link>
     </form>
   );
 }

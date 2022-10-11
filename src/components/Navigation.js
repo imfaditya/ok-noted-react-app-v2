@@ -4,14 +4,17 @@ import { BsSunFill, BsFillMoonFill, BsTranslate, BsFillArchiveFill, BsFillDoorCl
 import UserContext from '../contexts/UserContext';
 import { putAccessToken } from '../utils/network-data';
 import ThemeContext from '../contexts/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 function Navigation() {
   const {user, setUser} = React.useContext(UserContext);
   const {theme, toggleTheme} = React.useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const onLogout = () => {
     setUser(null);
     putAccessToken('');
+    navigate('/')
   }
 
   return (

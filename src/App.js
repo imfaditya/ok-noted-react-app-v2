@@ -1,8 +1,12 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import ThemeContext from './contexts/ThemeContext';
 import UserContext from './contexts/UserContext';
+import DetailPage from './pages/DetailPage';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { getUserLogged } from './utils/network-data';
 
 function NoteApp() {
@@ -49,7 +53,11 @@ function NoteApp() {
     return (
       <ThemeContext.Provider value={themeContextValue}>
         <UserContext.Provider value={userContextValue}>
-          <LoginPage/>
+          <Navigation/>
+          <Routes>
+            <Route path='/' element={<LoginPage/>}/>
+            <Route path='/register' element={<RegisterPage/>}/>
+          </Routes>
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
@@ -58,7 +66,11 @@ function NoteApp() {
   return (
     <ThemeContext.Provider value={themeContextValue}>
       <UserContext.Provider value={userContextValue}>
-        <LoginPage/>
+        <Navigation/>
+        <Routes>
+          <Route path='/' element={<HomePage/>}/>
+          <Route path='/detail/:id' element={<DetailPage/>}/>
+        </Routes>
       </UserContext.Provider>
     </ThemeContext.Provider>
   );
