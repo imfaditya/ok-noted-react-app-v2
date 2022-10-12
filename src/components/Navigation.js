@@ -16,6 +16,12 @@ function Navigation() {
     navigate('/')
   }
 
+  const toggleArchiveButton = () => {
+    navigate('/archive');
+  }
+
+  
+
   return (
     <nav>
       <ul className='nav-link'>
@@ -24,7 +30,7 @@ function Navigation() {
         {
           user !== null &&
           <>
-            <li><BsFillArchiveFill className='nav-link__icon'/></li>
+            <li><BsFillArchiveFill onClick={toggleArchiveButton} className='nav-link__icon'/></li>
             <li><BsFillDoorClosedFill onClick={onLogout} className='nav-link__icon'/></li>
           </>
         }

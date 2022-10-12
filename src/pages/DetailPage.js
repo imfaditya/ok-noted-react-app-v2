@@ -18,20 +18,18 @@ function DetailPage() {
         setNote(data);
       }
     }
-
     getData();
   }, [])
 
 
-  const onDelete = async (id) => {
-    const {error} = await deleteNote(id);
-    !error && navigate('/');
+  const onDelete = (id) => {
+    deleteNote(id);
+    navigate('/');
   }
 
-  const onArchive = async (id) => {
-    console.log(1);
-    const {error} = await archiveNote(id);
-    !error && navigate('/archive');
+  const onArchive = (id) => {
+    archiveNote(id);
+    navigate('/archive');
   }
 
   if(note !== null) {

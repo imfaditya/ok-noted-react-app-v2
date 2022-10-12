@@ -8,6 +8,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { getUserLogged } from './utils/network-data';
 import TopBar from './components/TopBar';
+import ArchivePage from './pages/ArchivePage';
+import AddPage from './pages/AddPage';
 
 function NoteApp() {
   const [user, setUser] = React.useState(null);
@@ -58,7 +60,7 @@ function NoteApp() {
           </header>
           <main>
           <Routes>
-            <Route path='/' element={<LoginPage/>}/>
+            <Route path='/*' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
           </Routes>
           </main>
@@ -77,6 +79,8 @@ function NoteApp() {
           <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/detail/:id' element={<DetailPage/>}/>
+            <Route path='/archive' element={<ArchivePage/>}/>
+            <Route path='/add' element={<AddPage/>}/>
           </Routes>
         </main>
       </UserContext.Provider>
