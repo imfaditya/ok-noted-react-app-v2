@@ -49,7 +49,7 @@ a {
   margin: 20px auto;
 }
 
-.container-header {
+.top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,11 +146,9 @@ a {
 
 .note-item {
   background-color: var(--background--lighter);
-  word-wrap: break-word;
   width: 32%;
   padding: 20px;
   border-radius: 10px;
-  min-height: 100%;
 }
 
 .note-item:hover > .note-item__title{
@@ -159,19 +157,26 @@ a {
 
 .note-item__title {
   font-weight:600;
-  height: 25px;
+  height: fit-content;
   transition: all .3s;
   cursor: pointer;
-  width: fit-content;
+  margin-bottom: 10px;
 }
 
 .note-item__created-at {
   margin-bottom: 10px;
   font-weight: 300;
+  font-size: 0.9em;
 }
 
 .note-item__body {
   font-weight: 300;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  font-size: 0.9em;
 }
 
 .detail__title, .detail__created-at, .detail__body {
@@ -194,7 +199,7 @@ a {
   margin-top: 25px;
 }
 
-.delete-button {
+.delete-button, .archive-button {
   background-color: var(--red);
   padding: 7px;
   border-radius: 7px;
@@ -212,6 +217,14 @@ a {
   padding: 20px;
   border-radius: 8px;
   margin: 15px 0;
+}
+
+.archive-button {
+  background-color: var(--blue);
+}
+
+.archive-button:hover {
+  background-color: var(--blue-darker);
 }
 
 @media screen and (max-width: 1100px) {

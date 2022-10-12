@@ -1,7 +1,5 @@
 import React from 'react';
 import { showFormattedDateEN } from '../utils/date-format';
-import Navigation from './Navigation';
-
 function NoteDetail({title, createdAt, body}) {
   return (
     <div className='detail'>

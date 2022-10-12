@@ -28,7 +28,6 @@ function HomePage() {
 
   return (
     <>
-      <h3 className='greeting'>Welcome back, {user.name}</h3>
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler}/>
       <NoteList notes={filteredNotes}/>
     </>
