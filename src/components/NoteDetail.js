@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 function NoteDetail({title, createdAt, body}) {
   const {locale} = React.useContext(LocaleContext);
+ 
 
   return (
     <div className='detail'>

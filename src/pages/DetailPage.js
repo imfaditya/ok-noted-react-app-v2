@@ -20,13 +20,14 @@ function DetailPage() {
       const { error, data } = await getNote(id);
       if(!error) {
         setNote(data);
-        setTimeout(() => {
-          setLoading(false);
-        }, 500)
       }
+      setTimeout(() => {
+        setLoading(false);
+      }, 500)
+      
     }
     getData();
-  }, [])
+  }, [id])
 
 
   const onDelete = async (id) => {

@@ -206,6 +206,7 @@ a {
   transition: all .3s;
   cursor: pointer;
   margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
 .note-item__created-at {

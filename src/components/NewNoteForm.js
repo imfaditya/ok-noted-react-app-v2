@@ -2,6 +2,7 @@ import React from 'react';
 import LocaleContext from '../contexts/LocaleContext';
 import useInput from '../hooks/UseInput';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 
 function NewNoteForm({addNoteHandler}) {
   const {locale} = React.useContext(LocaleContext);
@@ -13,6 +14,12 @@ function NewNoteForm({addNoteHandler}) {
   }
 
   const addNewNote = (event) => {
+    Swal.fire({
+      icon: 'success',
+      title: `${locale === 'en' ? 'New Note Added!' : 'Catatan Ditambahkan!'}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
     event.preventDefault();
     addNoteHandler({title, body});
   }

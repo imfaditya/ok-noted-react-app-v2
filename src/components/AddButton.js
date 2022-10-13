@@ -7,7 +7,11 @@ function AddButton() {
   const {locale} = React.useContext(LocaleContext);
 
   return (
-    <button className='add-button' onClick={(() => navigate('/add'))}>{locale === 'en' ? 'Create New Note' : 'Buat Catatan Baru'}</button>
+    <button 
+      className='add-button' 
+      onClick={(() => navigate('/add'))}>
+      {locale === 'en' ? 'Create New Note' : 'Buat Catatan Baru'}
+    </button> 
   );
 }
 

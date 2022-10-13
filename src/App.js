@@ -40,7 +40,7 @@ function NoteApp() {
       toggleLocale: () => {
         const newLocale = (locale === 'en' ? 'id' : 'en');
         setLocale(newLocale);
-        localStorage.setItem('theme', newLocale);
+        localStorage.setItem('locale', newLocale);
       }
     }
   }, [locale])
