@@ -10,11 +10,12 @@ import { getUserLogged } from './utils/network-data';
 import TopBar from './components/TopBar';
 import ArchivePage from './pages/ArchivePage';
 import AddPage from './pages/AddPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function NoteApp() {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
-  const [theme, setTheme] = React.useState('dark');
+  const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'dark');
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -35,7 +36,9 @@ function NoteApp() {
     return {
       theme,
       toggleTheme: () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark')
+        const newTheme = (theme === 'dark' ? 'light' : 'dark');
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
       },
     }
   }, [theme])
@@ -77,6 +80,7 @@ function NoteApp() {
         </header>
         <main>
           <Routes>
+            <Route path='/*' element={<NotFoundPage/>}/>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/detail/:id' element={<DetailPage/>}/>
             <Route path='/archive' element={<ArchivePage/>}/>
