@@ -1,24 +1,27 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 import { BsFileTextFill } from 'react-icons/bs'
+import LocaleContext from '../contexts/LocaleContext';
 
 function NoteList({notes}) {
+  const {locale} = React.useContext(LocaleContext);
+
   if(!notes.length) {
     return (
       <div className='empty-notes'>
         <BsFileTextFill/>
-        <h3>Empty Notes</h3>
+        <h3>{locale === 'en' ? 'Empty Notes' : 'Catatan Kosong'}</h3>
       </div>
     );
   } else {
     return (
-      <div className='note-list'>
+      <section className='note-list'>
         {
           notes.map((note) => {
             return <NoteItem key={note.id} {...note}/>
           })
         }
-      </div>
+      </section>
     );
   }
 }

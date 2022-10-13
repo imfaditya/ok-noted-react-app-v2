@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ArchiveNoteButton from '../components/ArchiveNoteButton';
 import BackButton from '../components/BackButton';
 import DeleteButton from '../components/DeleteButton';
+import Loading from '../components/Loading';
 import NoteDetail from '../components/NoteDetail';
 import UnarchiveNoteButton from '../components/UnarchiveNoteButton';
 import { archiveNote, deleteNote, getNote, unarchiveNote } from '../utils/network-data';
@@ -19,7 +20,9 @@ function DetailPage() {
       const { error, data } = await getNote(id);
       if(!error) {
         setNote(data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500)
       }
     }
     getData();
@@ -48,7 +51,7 @@ function DetailPage() {
   }
 
   if(loading) {
-    return null;
+    return <Loading/>
   }
 
   if(note !== null) {

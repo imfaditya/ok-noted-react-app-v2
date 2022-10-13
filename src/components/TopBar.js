@@ -5,10 +5,10 @@ import Navigation from './Navigation';
 function TopBar() {
   return (
     <div className='top-bar'>
-      <header className='header'>
+      <section className='header'>
         <img className='header__logo' src={logo} alt="logo"/>
         <h1 className='header__title'>Ok. Noted</h1>
-      </header>
+      </section>
       <Navigation/>
     </div>
   );

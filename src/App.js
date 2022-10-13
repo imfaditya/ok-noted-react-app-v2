@@ -11,11 +11,13 @@ import TopBar from './components/TopBar';
 import ArchivePage from './pages/ArchivePage';
 import AddPage from './pages/AddPage';
 import NotFoundPage from './pages/NotFoundPage';
+import LocaleContext from './contexts/LocaleContext';
 
 function NoteApp() {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'dark');
+  const [locale, setLocale] = React.useState(localStorage.getItem('locale')) || 'en';
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -50,6 +52,17 @@ function NoteApp() {
     }
   }, [user])
 
+  const localeContextValue = React.useMemo(() => {
+    return {
+      locale,
+      toggleLocale: () => {
+        const newLocale = (locale === 'en' ? 'id' : 'en');
+        setLocale(newLocale);
+        localStorage.setItem('locale', newLocale);
+      }
+    }
+  }, [locale])
+
   if(loading === true) {
     return null;
   }
@@ -58,6 +71,7 @@ function NoteApp() {
     return (
       <ThemeContext.Provider value={themeContextValue}>
         <UserContext.Provider value={userContextValue}>
+        <LocaleContext.Provider value={localeContextValue}>
           <header>
             <TopBar/>
           </header>
@@ -67,28 +81,31 @@ function NoteApp() {
             <Route path='/register' element={<RegisterPage/>}/>
           </Routes>
           </main>
+        </LocaleContext.Provider>
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
   }
 
   return (
-    <ThemeContext.Provider value={themeContextValue}>
-      <UserContext.Provider value={userContextValue}>
-        <header>
-          <TopBar/>
-        </header>
-        <main>
-          <Routes>
-            <Route path='/*' element={<NotFoundPage/>}/>
-            <Route path='/' element={<HomePage/>}/>
-            <Route path='/detail/:id' element={<DetailPage/>}/>
-            <Route path='/archive' element={<ArchivePage/>}/>
-            <Route path='/add' element={<AddPage/>}/>
-          </Routes>
-        </main>
-      </UserContext.Provider>
-    </ThemeContext.Provider>
+    <UserContext.Provider value={userContextValue}>
+      <ThemeContext.Provider value={themeContextValue}>
+        <LocaleContext.Provider value={localeContextValue}>
+          <header>
+            <TopBar/>
+          </header>
+          <main>
+            <Routes>
+              <Route path='/*' element={<NotFoundPage/>}/>
+              <Route path='/' element={<HomePage/>}/>
+              <Route path='/detail/:id' element={<DetailPage/>}/>
+              <Route path='/archive' element={<ArchivePage/>}/>
+              <Route path='/add' element={<AddPage/>}/>
+            </Routes>
+          </main>
+        </LocaleContext.Provider>
+      </ThemeContext.Provider>
+    </UserContext.Provider>
   );
 }
 
