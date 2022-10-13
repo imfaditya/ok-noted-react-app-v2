@@ -2,6 +2,7 @@ import React from 'react';
 import NoteItem from './NoteItem';
 import { BsFileTextFill } from 'react-icons/bs'
 import LocaleContext from '../contexts/LocaleContext';
+import PropTypes from 'prop-types';
 
 function NoteList({notes}) {
   const {locale} = React.useContext(LocaleContext);
@@ -24,6 +25,10 @@ function NoteList({notes}) {
       </section>
     );
   }
+}
+
+NoteList.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default NoteList;

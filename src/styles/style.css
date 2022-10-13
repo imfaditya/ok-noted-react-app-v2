@@ -167,7 +167,7 @@ a {
   font-weight: 500;
 }
 
-.form__navigate {
+.form__navigate, .form__title-count {
   font-weight: 300;
   font-size: 0.8em;
 }

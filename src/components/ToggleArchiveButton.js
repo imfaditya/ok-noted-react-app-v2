@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsFillArchiveFill, BsFillHouseFill } from 'react-icons/bs'; 
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function ToggleArchiveButton({location}) {
   const navigate = useNavigate();
@@ -26,6 +27,10 @@ function ToggleArchiveButton({location}) {
       {location === '/' ? <BsFillArchiveFill fill='white'/> : <BsFillHouseFill fill='white'/>}
     </button>
   )
+}
+
+ToggleArchiveButton.propTypes = {
+  location: PropTypes.string.isRequired,
 }
 
 export default ToggleArchiveButton;

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {showFormattedDateEN, showFormattedDateID} from '../utils/date-format';
 import parse from 'html-react-parser';
 import LocaleContext from '../contexts/LocaleContext';
+import PropTypes from 'prop-types';
 
 function NoteItem({id, title, createdAt, body}) {
   const {locale} = React.useContext(LocaleContext);
@@ -15,6 +16,13 @@ function NoteItem({id, title, createdAt, body}) {
       <div className='note-item__body'>{parse(body)}</div>
     </article>
   );
+}
+
+NoteItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
 }
 
 export default NoteItem;

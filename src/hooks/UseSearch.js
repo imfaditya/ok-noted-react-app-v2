@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function useSearch(defaultValue, setSearchParams) {
   const [value, setValue] = React.useState(defaultValue);
@@ -7,6 +8,11 @@ function useSearch(defaultValue, setSearchParams) {
     setSearchParams({keyword});
   }; 
   return [value, onValueChangeHandler];
+}
+
+useSearch.propTypes = {
+  defaultValue: PropTypes.string.isRequired,
+  setSearchParams: PropTypes.func,
 }
 
 export default useSearch;

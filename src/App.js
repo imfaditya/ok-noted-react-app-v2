@@ -17,7 +17,7 @@ function NoteApp() {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'dark');
-  const [locale, setLocale] = React.useState(localStorage.getItem('locale')) || 'en';
+  const [locale, setLocale] = React.useState(localStorage.getItem('locale') || '');
 
   React.useEffect(() => {
     const checkUser = async () => {
@@ -33,6 +33,17 @@ function NoteApp() {
       document.documentElement.setAttribute('data-theme', theme);
     }
   }, [theme])
+
+  const localeContextValue = React.useMemo(() => {
+    return {
+      locale,
+      toggleLocale: () => {
+        const newLocale = (locale === 'en' ? 'id' : 'en');
+        setLocale(newLocale);
+        localStorage.setItem('theme', newLocale);
+      }
+    }
+  }, [locale])
 
   const themeContextValue = React.useMemo(() => {
     return {
@@ -52,16 +63,6 @@ function NoteApp() {
     }
   }, [user])
 
-  const localeContextValue = React.useMemo(() => {
-    return {
-      locale,
-      toggleLocale: () => {
-        const newLocale = (locale === 'en' ? 'id' : 'en');
-        setLocale(newLocale);
-        localStorage.setItem('locale', newLocale);
-      }
-    }
-  }, [locale])
 
   if(loading === true) {
     return null;
